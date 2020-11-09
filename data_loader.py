@@ -9,11 +9,13 @@ def load_data(x):
 
 def into_dataframe(x):
     m = pd.DataFrame(x)
+    m.head()
     return m
 
 
-def get_features(x, y):
+def get_features(x,y):
     m = x.drop(y, axis=1)
+    m.head()
     return m
 
 
