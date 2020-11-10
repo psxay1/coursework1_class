@@ -62,7 +62,7 @@ for train_index, test_index in kf.split(x):
     model.compile(optimizer='adamax', loss='categorical_crossentropy', metrics=['accuracy'])
     model.summary()
 
-    history = model.fit(x_train, y_train, epochs=30, batch_size=250, validation_split=0.45)
+    history = model.fit(x_train, y_train, epochs=30, batch_size=250, validation_data=(x_test, y_test))
 
     # Generate generalization metrics
     score = model.evaluate(x_test, y_test, verbose=0)
