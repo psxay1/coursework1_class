@@ -52,17 +52,17 @@ for train_index, test_index in kf.split(x):
     x_train, x_test = x[train_index], x[test_index]
     y_train, y_test = y_new[train_index], y_new[test_index]
     model = tf.keras.models.Sequential()
-    model.add(Dense(51, kernel_regularizer=regularizers.l2(0.001), input_dim=51, activation='relu'))
+    model.add(Dense(51, kernel_regularizer=regularizers.l2(0.1), input_dim=51, activation='relu'))
     model.add(Dropout(0.8))
-    model.add(Dense(180, kernel_regularizer=regularizers.l2(0.001), activation='relu'))
+    model.add(Dense(180, kernel_regularizer=regularizers.l2(0.1), activation='relu'))
     model.add(Dropout(0.8))
-    model.add(Dense(50, kernel_regularizer=regularizers.l2(0.001), activation='relu'))
+    model.add(Dense(50, kernel_regularizer=regularizers.l2(0.1), activation='relu'))
     model.add(Dropout(0.8))
     model.add(Dense(2, activation='softmax'))
     model.compile(optimizer='adamax', loss='categorical_crossentropy', metrics=['accuracy'])
     model.summary()
 
-    history = model.fit(x_train, y_train, epochs=35, batch_size=250, validation_split=0.45)
+    history = model.fit(x_train, y_train, epochs=30, batch_size=250, validation_split=0.45)
 
     # Generate generalization metrics
     score = model.evaluate(x_test, y_test, verbose=0)
